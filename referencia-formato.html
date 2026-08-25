@@ -1,0 +1,1216 @@
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asia Agro — Informe Semanal de Gestión Comercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Motor de tamaño de hoja: se intercambia vía JS (A4 / Carta) -->
+<style id="page-size">
+  @page {
+    size: A4;
+    margin: 0 0 4mm 0;
+    @bottom-center {
+      content: "Página " counter(page) " de " counter(pages);
+      font: 6.5pt 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--muted);
+    }
+  }
+</style>
+
+<style>
+  :root{
+    --brand:#00A650;
+    --brand-600:#009448;
+    --brand-700:#007a3c;
+    --brand-ink:#005c2e;
+    --teal:#0f766e;
+    --lime:#C6D92E;
+    --lime-700:#8fa30d;
+    --red:#cf3a41;
+    --red-700:#a92a30;
+    --amber:#b45309;
+    --blue:#1d4ed8;
+    --ink:#101828;
+    --muted:#667085;
+    --soft:#98a2b3;
+    --line:#e4e9f0;
+    --line-2:#d7dee8;
+    --bg:#eef2f6;
+    --paper:#ffffff;
+    --tint:#f3faf5;
+    --tint-2:#f8fafc;
+    --page-w:210mm;
+    --page-h:297mm;
+    --print-h:293mm;
+    --pad-x:11mm;
+    --pad-t:9mm;
+    --pad-b:0;
+  }
+  body[data-format="carta"]{
+    --page-w:216mm;
+    --page-h:279mm;
+    --print-h:275mm;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  body{
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:13px;
+    line-height:1.45;
+    transition:background .2s;
+  }
+
+  /* ============ BARRA DE HERRAMIENTAS (solo pantalla) ============ */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 1px 2px rgba(16,24,40,.05);
+  }
+  .tb-inner{
+    max-width:1060px;
+    margin:0 auto;
+    padding:10px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .tb-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .tb-mark{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    flex:none;
+    background:linear-gradient(135deg, var(--brand) 0%, var(--brand-700) 100%);
+    color:#fff;
+    font-weight:900;
+    font-size:14px;
+    letter-spacing:.02em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:inset 0 -2px 0 rgba(0,0,0,.15), 0 2px 6px rgba(0,166,80,.25);
+  }
+  .tb-brand strong{
+    display:block;
+    font-size:13.5px;
+    font-weight:800;
+    color:var(--brand-700);
+    line-height:1.1;
+  }
+  .tb-brand span{
+    display:block;
+    font-size:11px;
+    color:var(--muted);
+  }
+  .tb-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .tb-hint{
+    font-size:11px;
+    color:var(--muted);
+    margin-right:4px;
+    white-space:nowrap;
+  }
+  .tb-select{
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .tb-select select{
+    font:600 12px 'Inter',sans-serif;
+    color:var(--ink);
+    padding:7px 9px;
+    border:1px solid var(--line-2);
+    border-radius:8px;
+    background:#fff;
+    cursor:pointer;
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23667085' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 9px center;
+    padding-right:26px;
+  }
+  .tb-select select:focus{
+    outline:2px solid var(--brand);
+    outline-offset:1px;
+    border-color:var(--brand);
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font:700 12.5px 'Inter',sans-serif;
+    color:#fff;
+    background:linear-gradient(135deg, var(--brand) 0%, var(--brand-700) 100%);
+    border:none;
+    border-radius:9px;
+    padding:9px 16px;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,166,80,.35);
+    transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    text-decoration:none;
+  }
+  .btn:hover{
+    filter:brightness(1.06);
+    box-shadow:0 4px 12px rgba(0,166,80,.4);
+    transform:translateY(-1px);
+  }
+  .btn:active{
+    transform:translateY(0);
+    filter:brightness(.97);
+    box-shadow:0 2px 4px rgba(0,166,80,.3);
+  }
+  .btn:focus-visible{
+    outline:2px solid var(--brand-ink);
+    outline-offset:2px;
+  }
+  .btn-outline{
+    background:#fff;
+    color:var(--brand-700);
+    box-shadow:0 1px 3px rgba(16,24,40,.08);
+    border:1px solid var(--line-2);
+  }
+  .btn-outline:hover{
+    background:var(--tint);
+    box-shadow:0 2px 8px rgba(16,24,40,.1);
+    transform:translateY(-1px);
+    filter:none;
+  }
+
+  /* ============ LIENZO DE VISTA PREVIA ============ */
+  .preview{
+    padding:26px 12px 60px;
+    overflow-x:auto;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .preview-empty{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* ============ HOJA / PÁGINA ============ */
+  .sheet{
+    width:var(--page-w);
+    height:var(--print-h);
+    margin:0 auto 22px;
+    background:var(--paper);
+    padding:var(--pad-t) var(--pad-x) var(--pad-b);
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 12px 34px rgba(16,24,40,.14), 0 2px 8px rgba(16,24,40,.08);
+    border-radius:2px;
+    font-size:8.6pt;
+    line-height:1.42;
+    color:var(--ink);
+    overflow:hidden;
+    page-break-after:always;
+    break-after:page;
+  }
+  .sheet:last-child{
+    page-break-after:auto;
+    break-after:auto;
+  }
+  .sheet + .sheet{
+    margin-top:0;
+  }
+
+  /* ---------- Encabezado del informe ---------- */
+  .rep-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6mm;
+  }
+  .rep-head .logo{
+    height:22mm;
+    width:auto;
+    flex:none;
+    display:flex;
+    align-items:center;
+  }
+  .rep-head .logo svg{
+    height:22mm;
+    width:auto;
+  }
+  .head-right{
+    text-align:right;
+    flex:1;
+  }
+  .head-kicker{
+    font-size:6.8pt;
+    font-weight:800;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--brand-600);
+    margin-bottom:1mm;
+  }
+  .head-right h1{
+    font-size:15.5pt;
+    font-weight:900;
+    letter-spacing:-.015em;
+    color:var(--ink);
+    line-height:1.08;
+  }
+  .head-sub{
+    font-size:8.4pt;
+    font-weight:600;
+    color:var(--teal);
+    margin-top:1.2mm;
+  }
+  .head-range{
+    font-size:8pt;
+    color:var(--muted);
+    margin-top:.4mm;
+  }
+  .head-bar{
+    height:1.1mm;
+    margin:3mm 0 3mm;
+    background:linear-gradient(90deg, var(--brand) 0%, var(--brand-600) 55%, var(--lime) 100%);
+    border-radius:1mm;
+  }
+
+  /* ---------- Meta strip ---------- */
+  .meta-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:3mm;
+    background:var(--tint-2);
+    border:1px solid var(--line);
+    border-radius:2mm;
+    padding:2.4mm 3mm;
+    margin-bottom:4mm;
+  }
+  .meta-strip label{
+    display:block;
+    font-size:6.3pt;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--soft);
+    margin-bottom:.5mm;
+  }
+  .meta-strip span{
+    font-size:7.8pt;
+    font-weight:600;
+    color:var(--ink);
+  }
+
+  /* ---------- Títulos de sección ---------- */
+  .sec-title{
+    display:flex;
+    align-items:baseline;
+    gap:2mm;
+    margin:0 0 2.6mm;
+    font-size:9.3pt;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:var(--ink);
+  }
+  .sec-title::before{
+    content:"";
+    width:2.8mm;
+    height:2.8mm;
+    background:var(--brand);
+    border-radius:.8mm;
+    align-self:center;
+    flex:none;
+  }
+  .sec-title small{
+    font-size:7.2pt;
+    font-weight:600;
+    color:var(--muted);
+    letter-spacing:.02em;
+    text-transform:none;
+    margin-left:auto;
+  }
+
+  /* ---------- Tarjetas de métricas ---------- */
+  .metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:3mm;
+    margin-bottom:4.5mm;
+  }
+  .metric{
+    position:relative;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:2mm;
+    padding:2.8mm 3mm 2.6mm;
+    overflow:hidden;
+  }
+  .metric::before{
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:.9mm;
+    background:linear-gradient(180deg, var(--brand), var(--lime));
+  }
+  .metric .m-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:2mm;
+    margin-bottom:1.4mm;
+  }
+  .metric label{
+    font-size:6.4pt;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+  }
+  .metric .m-ico{
+    width:6.4mm;
+    height:6.4mm;
+    border-radius:1.6mm;
+    flex:none;
+    background:var(--tint);
+    color:var(--brand-600);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .metric .m-ico svg{
+    width:3.6mm;
+    height:3.6mm;
+  }
+  .metric .m-val{
+    font-size:13.5pt;
+    font-weight:900;
+    letter-spacing:-.02em;
+    color:var(--brand-700);
+    line-height:1.05;
+  }
+  .metric .m-val.money{
+    font-size:11.5pt;
+    padding-top:.6mm;
+  }
+  .metric .m-sub{
+    font-size:6.8pt;
+    color:var(--muted);
+    margin-top:.8mm;
+  }
+  .metric .m-sub.positive{
+    color:var(--brand-600);
+    font-weight:600;
+  }
+
+  /* ---------- Tarjetas de actividad ---------- */
+  .acts{
+    display:flex;
+    flex-direction:column;
+    gap:2.4mm;
+  }
+  .act{
+    border:1px solid var(--line);
+    border-radius:2mm;
+    background:#fff;
+    overflow:hidden;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .act-head{
+    display:flex;
+    align-items:center;
+    gap:2mm;
+    flex-wrap:wrap;
+    background:var(--tint-2);
+    border-bottom:1px solid var(--line);
+    padding:1.5mm 2.8mm;
+  }
+  .act-type{
+    display:inline-flex;
+    align-items:center;
+    gap:1.2mm;
+    font-size:6.8pt;
+    font-weight:800;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--c, var(--teal));
+    padding:1mm 2.2mm;
+    border-radius:1mm;
+  }
+  .act-type .act-type-dot{
+    width:1.4mm;
+    height:1.4mm;
+    border-radius:50%;
+    background:rgba(255,255,255,.7);
+  }
+  .act-date{
+    display:inline-flex;
+    align-items:center;
+    gap:1.4mm;
+    font-size:7.3pt;
+    font-weight:700;
+    color:var(--ink);
+    margin-left:auto;
+  }
+  .act-date svg{
+    width:2.6mm;
+    height:2.6mm;
+    color:var(--soft);
+  }
+  .act-num{
+    font-size:6.5pt;
+    font-weight:700;
+    color:var(--soft);
+    background:var(--line);
+    padding:.4mm 1.4mm;
+    border-radius:.6mm;
+    letter-spacing:.04em;
+  }
+  .act-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.5mm 3mm;
+    padding:2mm 2.8mm 2.4mm;
+  }
+  .act-cell{
+    display:flex;
+    flex-direction:column;
+    gap:.3mm;
+    min-width:0;
+  }
+  .act-cell-full{
+    grid-column:1 / -1;
+  }
+  .f-label{
+    font-size:6.2pt;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--soft);
+    display:flex;
+    align-items:center;
+    gap:.6mm;
+  }
+  .f-label::before{
+    content:"";
+    width:.5mm;
+    height:2.6mm;
+    background:var(--line-2);
+    border-radius:.3mm;
+    flex:none;
+  }
+  .f-val{
+    font-size:7.8pt;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.3;
+    word-break:break-word;
+  }
+  .f-val.money{
+    font-weight:700;
+    color:var(--brand-700);
+  }
+  .f-val.result{
+    font-weight:600;
+  }
+  .f-val.result.info{ color:var(--blue); }
+  .f-val.result.warn{ color:var(--amber); }
+  .f-val.result.ok{ color:var(--brand-600); }
+  .f-val.alert{
+    font-weight:600;
+    color:var(--red-700);
+  }
+  .f-val.alert.ok{
+    color:var(--brand-600);
+  }
+  .op-badge{
+    display:inline-block;
+    font-size:6.2pt;
+    font-weight:800;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:.4mm 1.6mm;
+    border-radius:.6mm;
+    margin-right:.8mm;
+  }
+  .op-badge.alta{
+    background:#dcfce7;
+    color:var(--brand-700);
+  }
+  .op-badge.media{
+    background:#fef9c3;
+    color:var(--amber);
+  }
+  .op-badge.baja{
+    background:#f1f3f4;
+    color:var(--muted);
+  }
+
+  /* ---------- Pie de página de la hoja ---------- */
+  .sheet-footer{
+    margin-top:auto;
+    padding-top:2.8mm;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:6.8pt;
+    color:var(--muted);
+    gap:3mm;
+    flex-wrap:wrap;
+  }
+  .sheet-footer .sf-left{
+    display:flex;
+    align-items:center;
+    gap:2mm;
+  }
+  .sheet-footer .sf-left svg{
+    width:2.4mm;
+    height:2.4mm;
+    color:var(--soft);
+  }
+  .sheet-footer .sf-right{
+    text-align:right;
+    font-weight:500;
+  }
+  .sheet-footer .sf-right .gen-label{
+    font-weight:700;
+    color:var(--soft);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    font-size:6.2pt;
+  }
+
+  /* ============ RESPONSIVE (pantalla) ============ */
+  @media (max-width: 640px){
+    .preview{ padding:16px 8px 40px; }
+    .toolbar{ display:none; }
+    .sheet{
+      box-shadow:0 4px 12px rgba(16,24,40,.1);
+      border-radius:0;
+      margin:0 auto 12px;
+    }
+  }
+
+  /* ============ IMPRESIÓN ============ */
+  @media print{
+    .toolbar{ display:none !important; }
+    .preview{
+      padding:0;
+      background:transparent;
+      overflow:visible;
+      max-width:none;
+    }
+    .sheet{
+      box-shadow:none;
+      margin:0;
+      border-radius:0;
+      page-break-after:always;
+      break-after:page;
+    }
+    .sheet:last-child{
+      page-break-after:auto;
+      break-after:auto;
+    }
+    body{ background:#fff; }
+    .tb-hint{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ BARRA DE HERRAMIENTAS ============ -->
+<div class="toolbar" role="toolbar" aria-label="Herramientas de vista previa">
+  <div class="tb-inner">
+    <div class="tb-brand">
+      <div class="tb-mark" aria-hidden="true">
+        <svg viewBox="0 0 44 44" width="20" height="20"><defs><linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00A650"/><stop offset="1" stop-color="#007a3c"/></linearGradient></defs><rect x="2" y="2" width="40" height="40" rx="9" fill="url(#tbg)"/><text x="22" y="28" text-anchor="middle" font-family="Inter" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">AA</text><path d="M22 7 C16 12, 15 17, 22 22 C29 17, 28 12, 22 7" fill="none" stroke="#C6D92E" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <strong>Asia Agro</strong>
+        <span>Informe Semanal de Gestión Comercial</span>
+      </div>
+    </div>
+    <div class="tb-actions">
+      <span class="tb-hint">Vista previa ·</span>
+      <div class="tb-select">
+        <label for="fmt-select">Formato</label>
+        <select id="fmt-select" aria-label="Formato de página">
+          <option value="a4" selected>A4 (210 × 297 mm)</option>
+          <option value="carta">Carta (216 × 279 mm)</option>
+        </select>
+      </div>
+      <button class="btn btn-outline" id="btn-add-page" type="button" aria-label="Agregar página" title="Agregar página duplicada">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Página
+      </button>
+      <button class="btn" id="btn-print" type="button" aria-label="Imprimir o guardar como PDF">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 5v4.5M3 5l3-3M3 9.5L6 6.5M11 5v5M11 5l-3-3M11 10l-3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Imprimir / PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LIENZO DE VISTA PREVIA ============ -->
+<div class="preview" id="preview" role="region" aria-label="Vista previa del informe">
+
+  <!-- Cada .sheet es una página del informe. Duplicar para más páginas. -->
+  <div class="sheet" id="sheet-1">
+
+    <!-- Encabezado -->
+    <header class="rep-head">
+      <div class="logo" aria-label="Logotipo Asia Agro">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asia Agro">
+          <defs>
+            <linearGradient id="agroGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#00A650"/>
+              <stop offset="1" stop-color="#007a3c"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="url(#agroGrad)"/>
+          <path d="M24 6 C17 11.5, 16 17, 24 22.5 C32 17, 31 11.5, 24 6" fill="none" stroke="#C6D92E" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="24" y1="9.5" x2="24" y2="21" stroke="#C6D92E" stroke-width="1.2" stroke-linecap="round"/>
+          <text x="24" y="31" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="900" fill="#fff" letter-spacing="-0.5">AA</text>
+        </svg>
+      </div>
+      <div class="head-right">
+        <div class="head-kicker">Informe Semanal</div>
+        <h1>Informe de Gestión Comercial</h1>
+        <div class="head-sub">Semana en curso</div>
+        <div class="head-range" id="report-range">Del 10 de febrero al 16 de febrero de 2025</div>
+      </div>
+    </header>
+
+    <div class="head-bar" aria-hidden="true"></div>
+
+    <!-- Meta strip -->
+    <div class="meta-strip">
+      <div>
+        <label>Departamento</label>
+        <span>Gestión Comercial</span>
+      </div>
+      <div>
+        <label>Responsable</label>
+        <span>Equipo de Campo</span>
+      </div>
+      <div>
+        <label>Zona</label>
+        <span>Norte, Centro y Occidente</span>
+      </div>
+      <div>
+        <label>Estado</label>
+        <span>Activo</span>
+      </div>
+    </div>
+
+    <!-- Métricas -->
+    <section class="metrics" aria-label="Resumen de métricas clave">
+      <div class="metric">
+        <div class="m-top">
+          <label>Total gestiones</label>
+          <div class="m-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18" cy="18" r="2"/></svg>
+          </div>
+        </div>
+        <div class="m-val">47</div>
+        <div class="m-sub positive">+12% vs semana anterior</div>
+      </div>
+      <div class="metric">
+        <div class="m-top">
+          <label>Ventas totales</label>
+          <div class="m-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M12 2l4 4M8 6h8M8 10h8M8 14h5"/></svg>
+          </div>
+        </div>
+        <div class="m-val money">$12,850 <span style="font-size:8pt;font-weight:600;color:var(--muted)">USD</span></div>
+        <div class="m-sub positive">+8% vs semana anterior</div>
+      </div>
+      <div class="metric">
+        <div class="m-top">
+          <label>Clientes atendidos</label>
+          <div class="m-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 6 4 6 7c0 3 4 6 6 6s6-3 6-6c0-3-2-5-6-5z"/><path d="M8 16c0 0 2 2 4 2s4-2 4-2"/><circle cx="9" cy="8.5" r=".8" fill="currentColor"/><circle cx="15" cy="8.5" r=".8" fill="currentColor"/></svg>
+          </div>
+        </div>
+        <div class="m-val">32</div>
+        <div class="m-sub">Nuevos: 7 · Regulares: 25</div>
+      </div>
+      <div class="metric">
+        <div class="m-top">
+          <label>Seguimientos</label>
+          <div class="m-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 018-8 8 8 0 018 8 8 8 0 01-8 8 8 8 0 01-8-8z"/><path d="M12 8v4l2 2"/></svg>
+          </div>
+        </div>
+        <div class="m-val">18</div>
+        <div class="m-sub">Pendientes: 4 · Completados: 14</div>
+      </div>
+    </section>
+
+    <!-- Actividades -->
+    <section class="activities" aria-label="Detalle de actividades registradas">
+      <div class="sec-title">
+        Actividades registradas
+        <small>6 gestiones esta semana</small>
+      </div>
+
+      <div class="acts" id="activities-list">
+        <!-- Actividad 1 -->
+        <article class="act">
+          <div class="act-head">
+            <span class="act-type" style="--c:var(--teal)">
+              <span class="act-type-dot"></span>Visita
+            </span>
+            <span class="act-num">#0451</span>
+            <span class="act-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              Lun 10 Feb · 10:30
+            </span>
+          </div>
+          <div class="act-grid">
+            <div class="act-cell">
+              <span class="f-label">Cliente</span>
+              <span class="f-val">Hermanos López S.A.</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Contacto</span>
+              <span class="f-val">María González · mgonzalez@hermanoslopez.com</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Ciudad / Zona</span>
+              <span class="f-val">Monterrey, Nuevo León — Norte</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Productos</span>
+              <span class="f-val">Fertilizante NPK 15-15-15 · Herbiciante GLYPHOSATE</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Datos de venta</span>
+              <span class="f-val money">$1,250 USD · Pedido #P-0451</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Resultado</span>
+              <span class="f-val result info">Cotización enviada</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Oportunidad comercial</span>
+              <span class="f-val"><span class="op-badge alta">Alta</span>Volumen recurrente estimado · 2do pedido en 30 días</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Alerta / Problema</span>
+              <span class="f-val alert">Demora en entrega de insumos — almacén central</span>
+            </div>
+            <div class="act-cell-full">
+              <span class="f-label">Próxima acción</span>
+              <span class="f-val">Seguimiento semana próxima · Confirmar fecha de entrega con almacén · Enviar cotización formal</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Actividad 2 -->
+        <article class="act">
+          <div class="act-head">
+            <span class="act-type" style="--c:var(--blue)">
+              <span class="act-type-dot"></span>Llamada
+            </span>
+            <span class="act-num">#0452</span>
+            <span class="act-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              Mar 11 Feb · 14:00
+            </span>
+          </div>
+          <div class="act-grid">
+            <div class="act-cell">
+              <span class="f-label">Cliente</span>
+              <span class="f-val">Agrovertical México</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Contacto</span>
+              <span class="f-val">Carlos Ramírez · c.ramirez@agrovertical.mx</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Ciudad / Zona</span>
+              <span class="f-val">Guadalajara, Jalisco — Occidente</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Productos</span>
+              <span class="f-val">Sustrato en MYCOPLUG · Agaricus spp.</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Datos de venta</span>
+              <span class="f-val money">$890 USD · Presupuesto en evaluación</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Resultado</span>
+              <span class="f-val result info">Demo virtual agendada</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Oportunidad comercial</span>
+              <span class="f-val"><span class="op-badge media">Media</span>Nuevo cliente · Primer contacto · Interés en volumen</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Alerta / Problema</span>
+              <span class="f-val alert ok">Sin alertas detectadas</span>
+            </div>
+            <div class="act-cell-full">
+              <span class="f-label">Próxima acción</span>
+              <span class="f-val">Confirmar fecha de demo virtual · Enviar catálogo técnico de sustratos</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Actividad 3 -->
+        <article class="act">
+          <div class="act-head">
+            <span class="act-type" style="--c:var(--brand)">
+              <span class="act-type-dot"></span>Reunión
+            </span>
+            <span class="act-num">#0453</span>
+            <span class="act-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              Mié 12 Feb · 09:00
+            </span>
+          </div>
+          <div class="act-grid">
+            <div class="act-cell">
+              <span class="f-label">Cliente</span>
+              <span class="f-val">Productores Bajío S.C.</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Contacto</span>
+              <span class="f-val">Comité directivo · Ing. Javier Mercado</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Ciudad / Zona</span>
+              <span class="f-val">León, Guanajuato — Bajío</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Productos</span>
+              <span class="f-val">Kit siembra integral · Semilla certificada · Biofertilizante</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Datos de venta</span>
+              <span class="f-val money">$3,400 USD · Acuerdo parcial alcanzado</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Resultado</span>
+              <span class="f-val result warn">Acuerdo parcial · Pendiente cierre</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Oportunidad comercial</span>
+              <span class="f-val"><span class="op-badge alta">Alta</span>Cliente institucional · Volumen anual proyectado</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Alerta / Problema</span>
+              <span class="f-val alert">Competencia bajando precio 15% · Presión comercial</span>
+            </div>
+            <div class="act-cell-full">
+              <span class="f-label">Próxima acción</span>
+              <span class="f-val">Negociar volumen y precio final · Enviar propuesta de valor diferenciado · Reunión de cierre viernes</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Actividad 4 -->
+        <article class="act">
+          <div class="act-head">
+            <span class="act-type" style="--c:var(--amber)">
+              <span class="act-type-dot"></span>Cotización
+            </span>
+            <span class="act-num">#0454</span>
+            <span class="act-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              Jue 13 Feb · 11:15
+            </span>
+          </div>
+          <div class="act-grid">
+            <div class="act-cell">
+              <span class="f-label">Cliente</span>
+              <span class="f-val">Tierra Fértil Orgánica</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Contacto</span>
+              <span class="f-val">Ana Pérez · ana.perez@tierrafertil.org</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Ciudad / Zona</span>
+              <span class="f-val">Puebla, Puebla — Centro</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Productos</span>
+              <span class="f-val">Biofertilizante líquido · Microorganismos beneficiosos</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Datos de venta</span>
+              <span class="f-val money">$620 USD · Cotización aprobada</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Resultado</span>
+              <span class="f-val result ok">Cotización aprobada · Pedido generado</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Oportunidad comercial</span>
+              <span class="f-val"><span class="op-badge baja">Baja</span>Pedido puntual · Sin compromiso de repetición</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Alerta / Problema</span>
+              <span class="f-val alert ok">Sin alertas detectadas</span>
+            </div>
+            <div class="act-cell-full">
+              <span class="f-label">Próxima acción</span>
+              <span class="f-val">Cerrar pedido · Programar entrega para semana próxima · Confirmar recibo de órdenes</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Actividad 5 -->
+        <article class="act">
+          <div class="act-head">
+            <span class="act-type" style="--c:var(--soft);color:var(--ink)">
+              <span class="act-type-dot"></span>Seguimiento
+            </span>
+            <span class="act-num">#0455</span>
+            <span class="act-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              Vie 14 Feb · 16:45
+            </span>
+          </div>
+          <div class="act-grid">
+            <div class="act-cell">
+              <span class="f-label">Cliente</span>
+              <span class="f-val">Verdes del Valle</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Contacto</span>
+              <span class="f-val">Luis Torres · l.torres@verdesdelvalle.com</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Ciudad / Zona</span>
+              <span class="f-val">Oaxaca, Oaxaca — Sur</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Productos</span>
+              <span class="f-val">Nutrientes foliar · Calcio + Magnesio · Biostimulante</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Datos de venta</span>
+              <span class="f-val money">$1,050 USD · Entrega confirmada</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Resultado</span>
+              <span class="f-val result ok">Entrega confirmada · Factura emitida</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Oportunidad comercial</span>
+              <span class="f-val"><span class="op-badge media">Media</span>Cliente recurrente · Compra trimestral</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Alerta / Problema</span>
+              <span class="f-val alert">Cliente insatisfecho — entrega anterior retrasada 3 días</span>
+            </div>
+            <div class="act-cell-full">
+              <span class="f-label">Próxima acción</span>
+              <span class="f-val">Remediar insatisfacción · Ofrecer descuento 5% próximo pedido · Reportar incidente al gerente</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Actividad 6 -->
+        <article class="act">
+          <div class="act-head">
+            <span class="act-type" style="--c:var(--lime-700)">
+              <span class="act-type-dot"></span>Demostración
+            </span>
+            <span class="act-num">#0456</span>
+            <span class="act-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              Vie 14 Feb · 11:00
+            </span>
+          </div>
+          <div class="act-grid">
+            <div class="act-cell">
+              <span class="f-label">Cliente</span>
+              <span class="f-val">Finca La Esperanza</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Contacto</span>
+              <span class="f-val">Rosa Mendoza · rosa@lagranja.com</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Ciudad / Zona</span>
+              <span class="f-val">Chihuahua, Chihuahua — Norte</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Productos</span>
+              <span class="f-val">Sistema de riego por goteo · Kit principiante</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Datos de venta</span>
+              <span class="f-val money">$2,240 USD · Demo en campo realizada</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Resultado</span>
+              <span class="f-val result ok">Demostración exitosa · Interés confirmado</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Oportunidad comercial</span>
+              <span class="f-val"><span class="op-badge alta">Alta</span>Nuevo cliente · Potencial de expansión a 5 hectáreas</span>
+            </div>
+            <div class="act-cell">
+              <span class="f-label">Alerta / Problema</span>
+              <span class="f-val alert ok">Sin alertas detectadas</span>
+            </div>
+            <div class="act-cell-full">
+              <span class="f-label">Próxima acción</span>
+              <span class="f-val">Enviar propuesta formal de riego · Agendar visita técnica de ingeniería · Follow-up en 10 días</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pie de página de la hoja -->
+    <footer class="sheet-footer">
+      <div class="sf-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v8l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v8"/></svg>
+        <span>Asia Agro · Informe de Gestión Comercial</span>
+      </div>
+      <div class="sf-right">
+        <span class="gen-label">Generado</span><br>
+        <span id="gen-date-display">--</span>
+      </div>
+    </footer>
+  </div>
+
+</div>
+
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+(function(){
+  'use strict';
+
+  var preview = document.getElementById('preview');
+  var sheet1 = document.getElementById('sheet-1');
+  var fmtSelect = document.getElementById('fmt-select');
+  var btnPrint = document.getElementById('btn-print');
+  var btnAddPage = document.getElementById('btn-add-page');
+  var genDateDisplay = document.getElementById('gen-date-display');
+  var reportRange = document.getElementById('report-range');
+
+  // ---- Generar fecha y hora de creación del documento ----
+  function setGenerationDate(){
+    var now = new Date();
+    var opts = { 
+      weekday:'short', year:'numeric', month:'long', day:'numeric',
+      hour:'2-digit', minute:'2-digit', second:'2-digit',
+      timeZone:'America/Mexico_City',
+      timeZoneName:'short'
+    };
+    genDateDisplay.textContent = now.toLocaleDateString('es-MX', opts);
+  }
+  setGenerationDate();
+
+  // ---- Rango de fechas de la semana en curso ----
+  function setReportRange(){
+    var now = new Date();
+    var day = now.getDay(); // 0=Dom, 1=Lun ...
+    var diff = day === 0 ? 6 : day - 1; // días para retroceder a lunes
+    var lunes = new Date(now);
+    lunes.setDate(now.getDate() - diff);
+    var domingo = new Date(lunes);
+    domingo.setDate(lunes.getDate() + 6);
+
+    var opts = { day:'numeric', month:'long', year:'numeric' };
+    var fmt = new Intl.DateTimeFormat('es-MX', opts);
+    reportRange.textContent = 'Del ' + fmt.format(lunes) + ' al ' + fmt.format(domingo) + ' de ' + domingo.getFullYear();
+  }
+  setReportRange();
+
+  // ---- Formato A4 / Carta ----
+  function setFormat(format){
+    document.body.setAttribute('data-format', format);
+    var ps = document.getElementById('page-size');
+    if(format === 'carta'){
+      ps.textContent = 
+        '@page { ' +
+          'size: Letter; ' +
+          'margin: 0 0 4mm 0; ' +
+          '@bottom-center { content: "Página " counter(page) " de " counter(pages); font: 6.5pt \'Inter\', -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif; color: var(--muted); } ' +
+        '}';
+    }else{
+      ps.textContent = 
+        '@page { ' +
+          'size: A4; ' +
+          'margin: 0 0 4mm 0; ' +
+          '@bottom-center { content: "Página " counter(page) " de " counter(pages); font: 6.5pt \'Inter\', -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif; color: var(--muted); } ' +
+        '}';
+    }
+  }
+
+  fmtSelect.addEventListener('change', function(){
+    setFormat(this.value);
+  });
+
+  // Inicializar formato from select
+  setFormat(fmtSelect.value);
+
+  // ---- Imprimir ----
+  btnPrint.addEventListener('click', function(){
+    window.print();
+  });
+
+  // ---- Agregar página duplicada ----
+  btnAddPage.addEventListener('click', function(){
+    var clone = sheet1.cloneNode(true);
+    clone.setAttribute('id', 'sheet-' + (preview.children.length + 1));
+    // Limpiar page-break del último para evitar página vacía al final
+    if(preview.lastChild && preview.lastChild.classList.contains('sheet')){
+      preview.lastChild.style.pageBreakAfter = 'auto';
+      preview.lastChild.style.breakAfter = 'auto';
+    }
+    preview.appendChild(clone);
+    // Forzar actualización de estilos
+    void preview.offsetHeight;
+  });
+
+  // ---- Ajuste de altura de hojas al cambiar formato (responsive) ----
+  // Las hojas usan --print-h via CSS, no hay acción JS adicional.
+
+  // ---- Atajo de teclado: Ctrl+P ----
+  document.addEventListener('keydown', function(e){
+    if((e.ctrlKey || e.metaKey) && e.key === 'p'){
+      // Dejar que el navegador maneje Ctrl+P nativo
+    }
+  });
+
+  // ---- Si no hay actividades, mostrar estado vacío ----
+  // (no aplica en esta plantilla con datos de ejemplo)
+
+  console.log('Asia Agro — Informe Semanal de Gestión Comercial listo.');
+})();
+</script>
+
+</body>
+</html>
